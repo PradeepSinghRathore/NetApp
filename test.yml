@@ -1,0 +1,14 @@
+---
+- name: Info  
+  hosts: Netapp_Storage
+  
+  tasks:
+    - name: Get NetApp info 
+      na_ontap_info:
+        state: info
+        vserver: “{{ vserver }}”
+        gather_subset: snapshot_info
+      register: ontap_info
+    - debug:
+        msg: "{{ ontap_info.ontap_info }}"
+

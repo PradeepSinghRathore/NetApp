@@ -1,0 +1,13 @@
+---
+- name: manage snapshots on Netapp ONTAP
+  hosts: localhost
+  tasks:
+    - name: manage snapshots on Netapp ONTAP
+      na_ontap_snapshot:
+              state: present
+              snapshot: Ansibletest
+              volume: ansibleVolume 
+              vserver: DNAS_NBU 
+              username: ansible
+              password: Hitachi@123
+              hostname: 192.168.100.29

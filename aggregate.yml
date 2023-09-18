@@ -1,0 +1,15 @@
+---
+- name: create aggregate 
+  hosts: localhost
+  tasks:
+    - name: manage aggregate
+      na_ontap_aggregate:
+        state: present
+        service_state: online
+        name: ansibleAggr
+        disk_count: 1
+        hostname: 192.168.100.29
+        username: ansible
+        password: Hitachi@123
+        name: Ansibleaggregate
+

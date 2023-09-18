@@ -1,0 +1,14 @@
+---
+- name: create a new snapshot policy
+  hosts: localhost
+  tasks:
+    - name:  create a new snapshot policy
+      na_ontap_snapshot_policy:
+              state: present
+              name: daily_policy
+              schedule: hourly
+              username: ansible
+              password: Hitachi@123
+              hostname: 192.168.100.29
+              enabled: True
+              count: 10 

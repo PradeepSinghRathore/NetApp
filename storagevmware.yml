@@ -1,0 +1,42 @@
+---
+- name: Connect NetApp storage volume to vCenter
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Connect to vCenter
+      community.vmware.vmware_host:
+        hostname: CDG-VCENTER.hsilab.com
+        username: administrator@vsphere.local
+        password: T!g3r@Ind!A
+        validate_certs: false
+
+    - name: Connect to NetApp storage
+      na_ontap_iscsi:
+        hostname: 192.168.100.29
+        username: ansible
+        password: Hitachi@123
+        state: present
+        name: Testing_Volume_iscsi
+        initiator: 192.168.100.24
+
+    - name: Add NetApp datastore to vCenter
+      community.vmware.vmware_datastore:
+        hostname: CDG-VCENTER.hsilab.com
+        username: administrator@vsphere.local
+        password: T!g3r@Ind!A
+        validate_certs: false
+        name: CDG_Datastore1
+        state: present
+        type: netapp_iscsi
+        remote_host: 192.168.100.29
+        remote_user: ansible
+        remote_password: Hitachi@123
+        remote_path: Testing_Volume_iscsi
+
+    - name: Disconnect from vCenter
+      community.vmware.vmware_host:
+        hostname: CDG-VCENTER.hsilab.com
+        username: administrator@vsphere.local
+        password: T!g3r@Ind!A
+        state: absent
+        validate_certs: false

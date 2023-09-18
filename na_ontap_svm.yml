@@ -1,0 +1,15 @@
+---
+- name: create a new svm on netapp
+  hosts: localhost
+  tasks:
+    - name:  create a new svm on netapp
+      na_ontap_svm:
+             state: present
+             name: ansibleVServe
+             root_volume: Test_Ansible
+             root_volume_aggregate: LABAFF_1_SSD_1
+             root_volume_security_style: mixed
+             hostname: 192.168.100.29
+             username: ansible
+             password: Hitachi@123
+

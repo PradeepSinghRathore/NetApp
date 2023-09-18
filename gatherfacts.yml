@@ -1,0 +1,10 @@
+---
+- name: Gather facts of netapp ontap
+  hosts: localhost
+  tasks:
+    - name: Get NetApp info (Password Authentication)
+      na_ontap_gather_facts:
+        state: info
+        hostname: 192.168.100.29
+        username: ansible
+        password: Hitachi@123

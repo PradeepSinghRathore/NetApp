@@ -1,0 +1,14 @@
+---
+- name: create volume clone
+  hosts: localhost
+  tasks:
+    - name: create volume clone 
+      na_ontap_volume_clone:
+              state: present
+              username: ansible
+              password: Hitachi@123
+              hostname: 192.168.100.29
+              vserver: DNAS_NBU 
+              parent_volume: ansibleVolume 
+              volume: Ansibletestclone
+                            
